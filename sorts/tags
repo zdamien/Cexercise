@@ -1,0 +1,35 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+M	testSorts.c	5;"	d	file:
+N	testSorts.c	4;"	d	file:
+SORTS_H	sorts.h	2;"	d
+SWAP	sorts.c	8;"	d	file:
+array	testSorts.c	/^int array[N];$/;"	v
+binary_search	sorts.c	/^int binary_search(int *array, int target, int start, int end) {$/;"	f
+bsort	sorts.c	/^void bsort(int *array, int N) { $/;"	f
+checkarray	testSorts.c	/^int checkarray(int * array, int size) {$/;"	f
+countselect	sorts.c	/^int countselect(int *array, int N, int M, int k) {$/;"	f
+countsort	sorts.c	/^void countsort(int *array, int N, int M) { $/;"	f
+decFill	sorts.h	10;"	d
+fill	testSorts.c	/^void fill(int *array, int size, int mod, int mode) {$/;"	f
+hsort	sorts.c	/^void hsort(int *array, int N) { \/\/heap$/;"	f
+hsort2	sorts.c	/^void hsort2(int *array, int N) { \/\/heap$/;"	f
+incFill	sorts.h	9;"	d
+isort	sorts.c	/^void isort(int *array, int N) { \/\/ insertion$/;"	f
+linear_search	sorts.c	/^int linear_search(int *array, int target, int start, int end) {$/;"	f
+main	testSorts.c	/^int main() {$/;"	f
+make_max_heap	sorts.c	/^void make_max_heap(int * array, int count) {$/;"	f
+maxheapify	sorts.c	/^void maxheapify(int* array, int n) {$/;"	f
+parray	testSorts.c	/^void parray(int * array, int size) {$/;"	f
+partition	sorts.c	/^int partition(int *array, int pivot, int start, int end) {$/;"	f
+quickselect	sorts.c	/^int quickselect(int *array, int index, int start, int end) {$/;"	f
+qusort	sorts.c	/^void qusort(int *array, int start, int end) {$/;"	f
+randFill	sorts.h	8;"	d
+sdown	sorts.c	/^void sdown(int * array, int root, int end) {$/;"	f
+siftDown	sorts.c	/^void siftDown(int *array, int start, int end) {$/;"	f
+siftUp	sorts.c	/^void siftUp(int * array, int root, int child) {$/;"	f
+ssort	sorts.c	/^void ssort(int *array, int N) {  $/;"	f
