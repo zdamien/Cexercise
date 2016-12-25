@@ -21,6 +21,7 @@ recursive fib 42 is 267914296
 
 // memoized fib function, using a vector.  Either I'm doing something
 // wrong or it's much slower than int*.
+// note: rather simpler code than the C-array version fib_c.
 extern int fib_v_ins (int n) {
   static std::vector<int> fibt{0,1};
   int i;
@@ -55,6 +56,7 @@ extern int fib_v_push (int n) {
   if (fibt[n] == -1) fibt[n] = fib_v_push(n-1)+fib_v_push(n-2);
   return fibt[n];
 }
+
 int recfib(int n) {
     if (n==0 || n==1) return n;
     else return recfib(n-1)+recfib(n-2);
