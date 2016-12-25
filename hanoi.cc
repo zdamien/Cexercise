@@ -1,3 +1,5 @@
+// basic Towers of Hanoi
+
 #include "s.h"
 
 typedef int peg_t;
