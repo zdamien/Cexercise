@@ -8,22 +8,37 @@
 
 /*
 [Zefiris:0] ./a.out
-42
-C array fib 42 is 267914296
-4.4e-05
-vector::insert fib 42 is 267914296
-6.3e-05
-vector::push_back fib 42 is 267914296
-2.7e-05
-recursive fib 42 is 267914296
-2.36759
+100
+C array fib 100 is 3736710778780434371
+5.5e-05
+vector::resize fib 100 is 3736710778780434371
+7.2e-05
+vector::insert fib 100 is 3736710778780434371
+1.9e-05
+vector::push_back fib 100 is 3736710778780434371
+3.5e-05
 */
+
+typedef unsigned long long ull;
 
 // memoized fib function, using a vector.  Either I'm doing something
 // wrong or it's much slower than int*.
 // note: rather simpler code than the C-array version fib_c.
-extern int fib_v_ins (int n) {
-  static std::vector<int> fibt{0,1};
+extern ull fib_v_res (ull n) {
+  static std::vector<ull> fibt{0,1};
+  int i;
+
+  if (n+1 > fibt.size()) {
+      int oldsize=fibt.size();
+      fibt.resize(n+1,-1);
+  }
+
+  //printf("before rec: n %d size %d\n", n, fibt.size());
+  if (fibt[n] == -1) fibt[n] = fib_v_res(n-1)+fib_v_res(n-2);
+  return fibt[n];
+}
+extern ull fib_v_ins (ull n) {
+  static std::vector<ull> fibt{0,1};
   int i;
 
   if (n+1 > fibt.size()) {
@@ -42,8 +57,8 @@ extern int fib_v_ins (int n) {
   return fibt[n];
 }
 
-extern int fib_v_push (int n) {
-  static std::vector<int> fibt{0,1};
+extern ull fib_v_push (ull n) {
+  static std::vector<ull> fibt{0,1};
   int i;
 
   if (n+1 > fibt.size()) {
@@ -57,7 +72,7 @@ extern int fib_v_push (int n) {
   return fibt[n];
 }
 
-int recfib(int n) {
+int recfib(ull n) {
     if (n==0 || n==1) return n;
     else return recfib(n-1)+recfib(n-2);
 }
@@ -65,16 +80,16 @@ int recfib(int n) {
 
 
 
-extern int fib_c (int n) {
-  static int* fibt=0;
-  static int tablesize = 0;
+extern ull fib_c (ull n) {
+  static ull* fibt=0;
+  static ull tablesize = 0;
   int i;
 
   if (!fibt) {
 // no table, so make one.
       // guarantee enough space for first two values
     tablesize = n>0 ? n+1 : 2;
-    fibt=(int*) malloc(tablesize*sizeof(int));
+    fibt=(ull*) malloc(tablesize*sizeof(ull));
     fibt[0]=0;
     fibt[1]=1;
     for (i=2; i<=n; i++) {
@@ -82,7 +97,7 @@ extern int fib_c (int n) {
     }
   }
   else if (n+1 > tablesize) {
-      fibt = (int*) realloc(fibt, (n+1)*sizeof(int));
+      fibt = (ull*) realloc(fibt, (n+1)*sizeof(ull));
       for (i=tablesize; i<=n; i++) 
           fibt[i]=-1;
       tablesize = n+1;
