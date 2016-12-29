@@ -1,4 +1,5 @@
-// self-test on my ability to do backtracking.  Took 30 minutes in total.
+// self-test on my ability to do backtracking again.  Took 30 minutes in
+// total.
 
 #include "s.h"
 
