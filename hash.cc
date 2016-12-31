@@ -134,6 +134,9 @@ int main() {
     cout << ht.get("three") << "\n";
     cout << ht.get("ono") << "\n";
     cout << ht.size() << "\n";
+    ht.del("three");
+    cout << ht.size() << "\n";
+    cout << ht.in("three") << "\n";
 
     /*
     cout << mhash("hell") << "\n";
