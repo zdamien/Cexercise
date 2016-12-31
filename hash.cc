@@ -1,6 +1,6 @@
 // C++ hashtable exercise.  Goal: to go through getting the basics
 // working, not to create something library-ready.
-
+//
 // started 12:29, spent fair bit of time on hash function
 // inset, get, in done, 1:10.  insert doesn't check for existing values
 // though.
