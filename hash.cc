@@ -24,9 +24,6 @@ unsigned mhash(const Key& k) {
     unsigned int h=0;
     unsigned int high=0;
     for (unsigned char c : k)  {
-    //for (auto it = k.cbegin(); it!=k.cend(); it++) {
-     //   auto c = *it;
-
         high = h & 0xfff80000;
         h = h << 13;
         h ^= (high >> 19);
@@ -63,9 +60,10 @@ public:
     void del(const Key& k);
     Value get (const Key& k) const;
     auto get_it (const Key& k);
+    auto get_it (const Key& k) const;
     bool in (const Key& k) const;
     void clear() { buckets.clear(); num_elem=0; }
-    int size() const { return num_elem; }
+    int size() const noexcept { return num_elem; }
 
 };
 
@@ -73,24 +71,15 @@ void Htbl::insert (const Entry& e) {
     Bucket& buck = get_bucket(e);
     if (not in(e.first)) {
         buck.push_back(e);
+        ++num_elem;
     }
     else {
         del(e.first);
         insert(e);
     }
-    num_elem++;
 }
 
 class not_found {};
-
-Value Htbl::get (const Key& k) const {
-    const Bucket& buck = get_bucket(k);
-    for (auto it : buck) {
-        if (k == it.first)
-            return it.second;
-    }
-    throw not_found();
-}
 
 auto Htbl::get_it (const Key& k) {
     Bucket& buck = get_bucket(k);
@@ -101,19 +90,36 @@ auto Htbl::get_it (const Key& k) {
     throw not_found();
 }
 
+auto Htbl::get_it (const Key& k) const {
+    const Bucket& buck = get_bucket(k);
+    for (auto it = buck.cbegin(); it != buck.cend(); it++) {
+        if (k == it->first)
+            return it;
+    }
+    throw not_found();
+}
+
+Value Htbl::get (const Key& k) const {
+    auto it = get_it(k);
+    return it->second;
+}
+
+
 void Htbl::del (const Key& k) {
     Bucket& buck = get_bucket(k);
     auto it = get_it(k);
     buck.erase(it);
+    --num_elem;
 }
 
 bool Htbl::in (const Key& k) const {
-    const Bucket& buck = get_bucket(k);
-    for (auto it : buck) {
-        if (k == it.first)
-            return true;
+    try {
+        auto v = get(k);
+        return true;
     }
-    return false;
+    catch (not_found e) {
+        return false;
+    }
 }
 
 int main() {
@@ -123,10 +129,11 @@ int main() {
     ht.insert(make_pair("three","drei"));
     ht.insert(make_pair("ono","yoko"));
     ht.insert(make_pair("one","Onee"));
-    cout << ht.in("one") << ht.get("one") << "\n";
+    cout << ht.in("zne") << ht.get("one") << "\n";
     cout << ht.get("two") << "\n";
     cout << ht.get("three") << "\n";
     cout << ht.get("ono") << "\n";
+    cout << ht.size() << "\n";
 
     /*
     cout << mhash("hell") << "\n";
