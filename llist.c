@@ -107,6 +107,15 @@ void delete2(node* list, int data) {
     }
 }
 
+void destroy1 (node* list) {
+    while ( list != NULL) {
+        node *tmp = list;
+        list = list->next;
+        free (tmp);
+    }
+}
+
+
 
 int main() {
     node* list=NULL;
@@ -135,6 +144,7 @@ int main() {
     list = head_insert(list,4);
     print_list(list);
 
+    destroy1(list);
     printf("===\n");
     printf("===\n");
 
@@ -153,4 +163,6 @@ int main() {
     tail_insert(list2,3);
     delete2(list2,3);
     print_list(list2);
+    destroy1 (list2);
 }
+
