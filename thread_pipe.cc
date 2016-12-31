@@ -25,7 +25,7 @@ int main() {
     auto child = [](int fd) {
         auto fh = fdopen(fd,"r");
         int i;
-        printf("child -\n",i);
+        printf("child -\n");
         while (EOF != fscanf(fh,"%d",&i)) {
             printf("child %d\n",i);
         }

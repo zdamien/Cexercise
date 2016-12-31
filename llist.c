@@ -84,6 +84,7 @@ node* make_header() {
     node* t = (node*) malloc(sizeof(node));
     t->next = NULL;
     t->data = 0;
+    return t;
 }
 
 void head_insert2(node* list, int data) {
