@@ -1,8 +1,8 @@
 #include "sorts.h"
 #include <stdio.h>
 
-#define N 0
-#define M 20
+#define N 21  // num values
+#define M 7 // 1+max value
 
 int array[N];
 
