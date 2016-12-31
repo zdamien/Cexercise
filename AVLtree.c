@@ -513,7 +513,7 @@ int main() {
   */
   //printf("%d\n",parenthood(lookup(tree, 90)));
 
-  //delete(tree,40);
+  delete(tree,40);
   //delete(tree,70);
   //tree=delete(tree,50);
 //  rotleft(lookup(tree,5));
