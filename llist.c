@@ -39,8 +39,11 @@ node* tail_insert (node* list, int data){
 }
 
 void print_list(const node* list) {
+    // prints the 0 header of header lists becaus I haven't tried to be
+    // cleverer about it.
+    printf(":");
     while (list != NULL) {
-        printf("%d\n",list->data);
+        printf("%d:",list->data);
         list = list->next;
     }
     printf("\n");
@@ -139,5 +142,14 @@ int main() {
     head_insert2(list2,2);
     delete2(list2,1);
     print_list(list2);
+    delete2(list2,2);
+    delete2(list2,3);
+    print_list(list2);
 
+    head_insert2(list2,1);
+    head_insert2(list2,2);
+    head_insert2(list2,3);
+    tail_insert(list2,3);
+    delete2(list2,3);
+    print_list(list2);
 }
