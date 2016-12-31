@@ -26,7 +26,7 @@ extern int fib (int n) {
   else if (n+1 > tablesize) {
       int * oldt = fibt;
       fibt = realloc(fibt, (n+1)*sizeof(int));
-      if (fibt == NULL) fibt = oldt;
+      if (fibt == NULL) { fibt = oldt; abort(); }
       // ^ fixes a realloc bug caught by cppcheck, where the realloc
       // failed.  Of course in that case we can't grow the table.  For
       // code like this, I don't care, and added the check just to try

@@ -452,6 +452,15 @@ int hvalidate(const Tree* tree){
   return res;
 }
 
+void destroy ( Tree * tree) {
+    if (tree) {
+        destroy (tree->left);
+        destroy (tree->right);
+    }
+    free (tree);
+
+}
+
 int main() {
   Tree* tree = 0;
   //tree->key=50; tree->value=11;
@@ -534,4 +543,6 @@ int main() {
   printf("max 3 2 is %d\n",max(3,2));
   printf("height tree is %d\n",height(tree));
   */
+
+  destroy (tree);
 }
