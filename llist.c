@@ -1,7 +1,9 @@
 /* singly linked list exercise.  Basic data structure taking int values,
  * and two sets of functions: foo1() where the list might be no more
  * than a null pointer, and the list is always returned, foo2() where
- * it's assumed there's a sentinel header */
+ * it's assumed there's a sentinel header.
+
+Getting the basic ops right, haven't worried about error handling. */
 
 #include <stdio.h>
 #include <stdlib.h>
