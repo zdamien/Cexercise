@@ -19,6 +19,8 @@ using Value = string;
 using Entry = pair<Key, Value>;
 using Bucket = vector<Entry>;
 
+class not_found {};
+
 unsigned mhash(const Key& k) {
     //cout << "mhash " << k << "\n";
     unsigned int h=0;
@@ -67,6 +69,7 @@ public:
 
 };
 
+/* // original version
 void Htbl::insert (const Entry& e) {
     Bucket& buck = get_bucket(e);
     if (not in(e.first)) {
@@ -78,8 +81,8 @@ void Htbl::insert (const Entry& e) {
         insert(e);
     }
 }
+*/
 
-class not_found {};
 
 auto Htbl::get_it (const Key& k) {
     Bucket& buck = get_bucket(k);
@@ -104,6 +107,21 @@ Value Htbl::get (const Key& k) const {
     return it->second;
 }
 
+// fewer traversals, but using try/catch for non-error condition, so
+// arguably poor form.  Alternative route would be a get_it that simply
+// failed if the key isn't present.
+// moving down in code for get_it auto deduction
+void Htbl::insert (const Entry& e) {
+    Bucket& buck = get_bucket(e);
+    try {
+        auto it = get_it(e.first);
+        it->second = e.second;
+    }
+    catch (not_found exc) {
+        buck.push_back(e);
+        ++num_elem;
+    }
+}
 
 void Htbl::del (const Key& k) {
     Bucket& buck = get_bucket(k);
