@@ -12,6 +12,8 @@ constexpr int fib(const int n) {
 }
 
 int main() {
-    std::cout << fib(55) << "\n";
+    constexpr unsigned long val = fib(45);
+    // need constexpr there, or -O1, to get the optimization
+    std::cout << val << "\n";
 
 }

@@ -5,7 +5,7 @@
 #include "fib_memo.h"
 
 int main() {
-    int N;
+    unsigned long long N;
     scanf("%d",&N);
   //printf("fib 13 is %d\n",fib(13));
   //for (int i=10; i > 0; i--)

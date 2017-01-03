@@ -1,6 +1,9 @@
 #include <iostream>
 
-// doesn't seem to be working at compile time
+// -O0: no compile time execution
+// -O1 made it take 7G of RAM; infer compile time execution without
+// memoization
+// -O2 works fine, though, fast compile and execution
 
 template<int N>
 int fib() {
@@ -17,6 +20,8 @@ int fib<1>() {
 }
 
 int main() {
-    std::cout << fib<45>() << "\n";
+    int val = fib<45>();
+
+    std::cout << val << "\n";
 
 }

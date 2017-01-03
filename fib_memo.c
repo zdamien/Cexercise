@@ -7,16 +7,16 @@
 
 // memoized fib function, using a static int* that can be reallocated.
 // Getting the indices right is playing with fire.
-extern int fib (int n) {
-  static int* fibt=0;
-  static int tablesize = 0;
-  int i;
+extern unsigned long long fib (unsigned long long n) {
+  static unsigned long long* fibt=0;
+  static unsigned long long tablesize = 0;
+  unsigned long long i;
 
   if (!fibt) {
 // no table, so make one.
       // guarantee enough space for first two values
     tablesize = n>0 ? n+1 : 2;
-    fibt=malloc(tablesize*sizeof(int));
+    fibt=malloc(tablesize*sizeof(unsigned long long));
     fibt[0]=0;
     fibt[1]=1;
     for (i=2; i<=n; i++) {
@@ -24,8 +24,8 @@ extern int fib (int n) {
     }
   }
   else if (n+1 > tablesize) {
-      int * oldt = fibt;
-      fibt = realloc(fibt, (n+1)*sizeof(int));
+      unsigned long long * oldt = fibt;
+      fibt = realloc(fibt, (n+1)*sizeof(unsigned long long));
       if (fibt == NULL) { fibt = oldt; abort(); }
       // ^ fixes a realloc bug caught by cppcheck, where the realloc
       // failed.  Of course in that case we can't grow the table.  For
@@ -40,11 +40,11 @@ extern int fib (int n) {
   return fibt[n];
 }
 
-extern int test() {
+extern unsigned long long test() {
   return fib(13) == 233;
 }
 
-int recfib(int n) {
+unsigned long long recfib(unsigned long long n) {
     if (n==0 || n==1) return n;
     else return recfib(n-1)+recfib(n-2);
 }
