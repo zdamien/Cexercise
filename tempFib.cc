@@ -1,7 +1,7 @@
 #include <iostream>
 
 // -O0: no compile time execution
-// -O1 made it take 7G of RAM; infer compile time execution without
+// -O1 made it take 7G of RAM; I infer compile time execution without
 // memoization
 // -O2 works fine, though, fast compile and execution
 
